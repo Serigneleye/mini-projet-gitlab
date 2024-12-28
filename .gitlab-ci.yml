@@ -15,6 +15,7 @@ stages:
 flake8:
   image: docker:latest
   stage: Lint
+  
   services:
     - docker:dind
   script:
