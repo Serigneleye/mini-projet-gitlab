@@ -23,9 +23,12 @@ flake8:
     - flake8 --ignore=E501,E303 .
 
 docker_linter:
+  image: docker:latest
   stage: Lint
-  image: hadolint/hadolint
+  services:
+    - docker:dind
   script:
+    - apk add --no-cache hadolint
     - hadolint Dockerfile
 
 compile:
