@@ -1,0 +1,43 @@
+stages:
+  - Lint
+  - Compile
+  - Security_scan
+  - Test
+  - Quality
+  - Package
+  - Review
+  - Staging
+  - Production
+  - Deployment_validation
+
+variables: 
+
+
+flake8:
+  stage: Lint
+  script:
+    - pip install flake8
+    - flake8 --ignore=E501,E303 .
+
+docker_linter:
+  stage: Lint
+  image: hadolint/hadolint
+  script:
+    - hadolint Dockerfile
+
+compile:
+  stage: Compile
+  script:
+    - docker build -t gitlabProjet .
+  artifacts:
+    paths:
+      - docker_image.tar
+
+test:
+  stage: Test
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    # Exécuter le fichier test.py à l'intérieur de l'image
+    - docker run --rm my-app-image:latest python test.py
