@@ -10,12 +10,15 @@ stages:
   - Production
   - Deployment_validation
 
-variables: 
 
 
 flake8:
+  image: docker:latest
   stage: Lint
+  services:
+    - docker:dind
   script:
+    - apk add --no-cache python3 py3-pip
     - pip install flake8
     - flake8 --ignore=E501,E303 .
 
@@ -26,7 +29,10 @@ docker_linter:
     - hadolint Dockerfile
 
 compile:
+  image: docker:latest
   stage: Compile
+  services:
+    - docker:dind
   script:
     - docker build -t gitlabProjet .
   artifacts:
@@ -40,4 +46,4 @@ test:
     - docker:dind
   script:
     # Exécuter le fichier test.py à l'intérieur de l'image
-    - docker run --rm my-app-image:latest python test.py
+    - docker run --rm gitlaProjet python test.py
