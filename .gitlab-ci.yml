@@ -23,7 +23,7 @@ flake8:
     - python3 -m venv /path/to/venv
     - . /path/to/venv/bin/activate
     - pip install --upgrade pip setuptools importlib_metadata
-    - pip install flake9
+    - pip install flake8
     - flake8 --ignore=E501,E303 .
 
 docker_linter:
