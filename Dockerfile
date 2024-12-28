@@ -11,6 +11,7 @@ RUN apk add --no-cache --update \
 COPY ./webapp/requirements.txt /tmp/requirements.txt
 
 # Créer un environnement virtuel et installer les dépendances Python
+# shellcheck disable=SC1091
 RUN python3 -m venv /opt/venv && \
     . /opt/venv/bin/activate && \
     pip install --no-cache-dir -r /tmp/requirements.txt && \
