@@ -44,9 +44,10 @@ compile:
     - docker:dind
   script:
     - docker build -t gitlabprojet .
+    - docker save gitlabprojet > gitlabprojet.tar
   artifacts:
     paths:
-      - docker_image.tar
+      - gitlabprojet.tar
 
 test:
   stage: Test
@@ -55,4 +56,5 @@ test:
     - docker:dind
   script:
     # Exécuter le fichier test.py à l'intérieur de l'image
-    - docker run --rm gitlaprojet python test.py
+    - docker load < gitlabprojet.tar
+    - docker run -d -p 80:5000 --env PORT=5000 --rm -name gitlabprojet gitlabprojet python test.py
