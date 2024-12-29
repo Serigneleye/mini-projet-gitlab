@@ -1,8 +1,10 @@
 FROM python:3.13-alpine
 
 # Installer les dépendances système nécessaires
+# hadolint ignore=DL3018
 RUN apk add --no-cache --update \
-
+    python3 \
+    py3-pip \
     bash && \
     rm -rf /var/cache/apk/*
 
