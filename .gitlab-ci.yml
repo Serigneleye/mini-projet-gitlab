@@ -186,11 +186,11 @@ deploy review:
     - chmod 0400 id_rsa
     - ssh-keyscan -t rsa  ${HOSTNAME_DEPLOY_REVIEW} >> ~/.ssh/known_hosts
     - command1="docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
-    - command2="docker pull $IMAGE_NAME:$CI_COMMIT_REF_SLUG"
+    - command2="docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - command3="docker rm -f webapp"
-    - command4="docker run -d -p 80:5000 -e PORT=5000 --name webapp $IMAGE_NAME:$CI_COMMIT_REF_SLUG"
+    - command4="docker run -d -p 80:5000 -e PORT=5000 --name webapp $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - ssh -tt ${SSH_USER}@${HOSTNAME_DEPLOY_REVIEW} 
-      -o SendEnv=IMAGE_NAME 
+      -o SendEnv=CI_REGISTRY_IMAGE 
       -o SendEnv=CI_COMMIT_REF_SLUG 
       -o SendEnv=CI_REGISTRY_USER 
       -o SendEnv=CI_REGISTRY_PASSWORD 
