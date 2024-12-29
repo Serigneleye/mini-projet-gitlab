@@ -43,7 +43,7 @@ compile:
   services:
     - docker:dind
   script:
-    - docker build -t gitlabProjet .
+    - docker build -t gitlabprojet .
   artifacts:
     paths:
       - docker_image.tar
