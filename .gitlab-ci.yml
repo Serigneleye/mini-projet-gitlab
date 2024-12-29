@@ -49,6 +49,18 @@ compile:
     paths:
       - gitlabprojet.tar
 
+trivy_scan:
+  stage: Security_scan
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - export TRIVY_VERSION=$(wget -qO - "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+    - echo $TRIVY_VERSION
+    - wget --no-verbose https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz -O - | tar -zxvf -
+    - docker load < gitlabprojet.tar
+    - trivy image --severity HIGH,CRITICAL --exit-code 1 --no-progress my-docker-image:latest
+ 
 test:
   stage: Test
   image: docker:latest
@@ -58,3 +70,10 @@ test:
     # Exécuter le fichier test.py à l'intérieur de l'image
     - docker load < gitlabprojet.tar
     - docker run -d -p 80:5000 --env PORT=5000 --name gitlabprojet gitlabprojet python test.py
+quality:
+  stage: Quality
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - 
