@@ -2,9 +2,9 @@ FROM python:3.10-alpine
 
 # Installer les dépendances système nécessaires
 RUN apk add --no-cache --update \
-    python3=3.10.9-r0 \
-    py3-pip=22.3.1-r0 \
-    bash=5.1.16-r0 && \
+    python3 \
+    py3-pip \
+    bash && \
     rm -rf /var/cache/apk/*
 
 # Copier le fichier requirements.txt
