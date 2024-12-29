@@ -75,5 +75,3 @@ quality:
   image: docker:latest
   services:
     - docker:dind
-  script:
-    - 
