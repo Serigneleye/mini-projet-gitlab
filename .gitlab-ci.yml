@@ -57,4 +57,4 @@ test:
   script:
     # Exécuter le fichier test.py à l'intérieur de l'image
     - docker load < gitlabprojet.tar
-    - docker run -d -p 80:5000 --env PORT=5000 --rm -name gitlabprojet gitlabprojet python test.py
+    - docker run -d -p 80:5000 --env PORT=5000 --rm --name gitlabprojet gitlabprojet python test.py
