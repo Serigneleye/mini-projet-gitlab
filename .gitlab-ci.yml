@@ -59,7 +59,7 @@ trivy_scan:
     - echo $TRIVY_VERSION
     - wget --no-verbose https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz -O - | tar -zxvf -
     - docker load < gitlabprojet.tar
-    - ./trivy image --severity HIGH,CRITICAL --exit-code 1 --no-progress my-docker-image:latest
+    - ./trivy image --severity HIGH,CRITICAL --exit-code 1 --no-progress gitlabprojet
  
 test:
   stage: Test
