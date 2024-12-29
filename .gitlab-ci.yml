@@ -55,4 +55,4 @@ test:
     - docker:dind
   script:
     # Exécuter le fichier test.py à l'intérieur de l'image
-    - docker run --rm gitlaProjet python test.py
+    - docker run --rm gitlaprojet python test.py
