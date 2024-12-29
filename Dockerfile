@@ -1,4 +1,4 @@
-FROM python:3.18-alpine
+FROM python:3.13-alpine
 
 # Installer les dépendances système nécessaires
 RUN apk add --no-cache --update \
