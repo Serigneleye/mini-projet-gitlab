@@ -31,5 +31,5 @@ RUN adduser -D myuser
 USER myuser
 
 # Utiliser la notation JSON pour CMD
-CMD ["/bin/bash", "-c", "gunicorn  –bind 0.0.0.0:$PORT", "wsgi"]
+CMD ["/bin/bash", "-c", "gunicorn app:app  –bind 0.0.0.0:$PORT", "wsgi"]
 #CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "wsgi"]
