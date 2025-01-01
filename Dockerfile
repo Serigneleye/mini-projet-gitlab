@@ -20,7 +20,7 @@ RUN python3 -m venv /opt/venv && \
 
 # Ajouter le répertoire bin de l'environnement virtuel au PATH
 ENV PATH="/opt/venv/bin:$PATH"
-
+ENV PORT 5000
 # Copier le code de l'application
 COPY ./webapp /opt/webapp/
 WORKDIR /opt/webapp
