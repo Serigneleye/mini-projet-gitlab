@@ -111,8 +111,8 @@ deploy review:
   stage: Review
   services:
     - docker:dind
-  #only:
-    #- merge_requests
+  only:
+    - merge_requests
   environment:
     name: review/$CI_COMMIT_REF_SLUG
     url: $REVIEW_ENVIRONMENT_URL
