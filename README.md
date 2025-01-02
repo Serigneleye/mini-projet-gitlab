@@ -7,6 +7,9 @@ Nous avons introduit les stages demandés comme suit :
 -Installer Flake8 dans un environnement virtuel puis lancer la commande flake8 suivante:
 
     - flake8 --ignore=E501,E303 .
+les erreurs corrigées par la suite :
+<img width="462" alt="erreurflake8" src="https://github.com/user-attachments/assets/b4a0602b-1d23-4340-b0d2-bc395b4bc744" />
+
 
 -Realiser un 2e job qui fait le hadolint
 -Installer Hadolint et faire le scan avec
@@ -15,7 +18,7 @@ Nous avons introduit les stages demandés comme suit :
     - wget -O /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
     - chmod +x /usr/local/bin/hadolint
     - hadolint Dockerfile
-- il y a eu pas mal d'erreurs que j'ai dus corriger
+- il y a eu pas mal d'erreurs que j'ai dues corriger
 
 #Compilation du code source avec comme artefact une image docker de l'app.
 
@@ -43,6 +46,8 @@ Nous avons introduit les stages demandés comme suit :
 - creation de l'organition et du projet
 - generation de token
 - configuration dans gitlab des variables : sonar token et SONAR_HOST_URL
+  ![image](https://github.com/user-attachments/assets/3bcf2404-363c-4a50-92e3-07be5825d5d0)
+
 - creation fichier sonar-project.properties  avec les variables :
       
                 sonar.projectKey=gitlabprojet_gitlabprojet
@@ -52,6 +57,7 @@ Nous avons introduit les stages demandés comme suit :
                 name: sonarsource/sonar-scanner-cli:latest
                 - sonar-scanner
 Resultat obtenu sur l'interface sonar
+![image](https://github.com/user-attachments/assets/919a9a80-4b12-49c5-8f86-f98ca8cfb911)
 
 #Packaging
 -Recuperation de l'image, tag et pushh
@@ -80,3 +86,4 @@ test prod:
   stage: Test prod
   variables:
     DOMAIN: ${HOSTNAME_DEPLOY_PROD}
+<img width="459" alt="page hello world" src="https://github.com/user-attachments/assets/29a87454-e26f-4050-a079-84f18e07253f" />
